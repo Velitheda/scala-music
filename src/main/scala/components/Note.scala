@@ -3,7 +3,7 @@ package components
 import javax.sound.midi.{MidiEvent, ShortMessage}
 
 
-// Make pitch an option to represent isRest
+// Make pitch an option to represent isRest?
 case class Note(pitch: Int, length: Int, tick: Int, isRest: Boolean = false)
 
 object Note {

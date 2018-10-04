@@ -1,7 +1,7 @@
 package components
 
 /**
-  * This is an object with all the static music constants shared accross all the files
+  * This is an object with all the static music constants shared across all the files
   */
 object MusicConstants {
 

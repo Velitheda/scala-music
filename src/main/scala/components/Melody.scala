@@ -8,13 +8,12 @@ case class Melody(notes: List[Note], startingTick: Int) {
   def pitches: List[Int] = notes.map(_.pitch)
   def rhythm: List[Int] = notes.map(_.length)
 
-  def ticks: List[Int] = rhythm.scanLeft(startingTick)(_ + _)//.reverse.tail.reverse
+  def ticks: List[Int] = rhythm.scanLeft(startingTick)(_ + _)
   def stop: Int = rhythm.sum + 4
 
   def toEvents:List[MidiEvent] = {
     notes.flatMap(Note.events)
   }
-
 }
 
 object Melody {
@@ -23,12 +22,11 @@ object Melody {
     val rhythms = BarRhythm.rhythm(numBars)
     val rhythmWithoutRests = rhythms.map(_._1)
     println(rhythms)
-    val numNotes = rhythmWithoutRests.size//rhythms.count(_._2 == false)
+    val numNotes = rhythmWithoutRests.size
     val pitches = Generators.pitches(numNotes)
     //take the cumulative sum of rhythms so we know where to start each note
     val timeSpots = rhythmWithoutRests.scanLeft(startingTick)(_ + _)
-    //remove the last element of the list
-    val ticks = timeSpots.reverse.tail.reverse
+    val ticks = timeSpots.dropRight(0)
 
     println(s"Pitches: $pitches")
     println(s"Rhythm: $rhythms")
@@ -47,6 +45,4 @@ object Melody {
       melodies.head.startingTick
     )
   }
-
-//  def appendNotes(notes)
 }

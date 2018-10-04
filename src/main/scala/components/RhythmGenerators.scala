@@ -2,9 +2,6 @@ package components
 
 import components.Generators.randomNumber
 
-/**
-  * Created by jasminevickery on 24/06/18.
-  */
 trait RhythmGenerator {
   //semibreve, dotted minim, minim, crotchet, dotted crotchet, quaver, semiquaver
   val noteLengths = List(1, 2, 4, 6, 8, 12, 16)
