@@ -1,4 +1,4 @@
-package main.scala.components
+package components
 
 import javax.sound.midi.MidiEvent
 

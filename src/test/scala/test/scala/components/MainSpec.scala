@@ -1,6 +1,5 @@
-package test.scala
+package components
 
-import main.scala.components.{BarRhythm, Melody, Note, Transformers}
 import org.specs2.mutable._
 
 class MainSpec extends Specification {

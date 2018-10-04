@@ -1,6 +1,6 @@
-package main.scala.components
+package components
 
-import main.scala.components.Generators.randomNumber
+import components.Generators.randomNumber
 
 /**
   * Created by jasminevickery on 24/06/18.

@@ -1,6 +1,4 @@
-package main.scala.components
-
-import components.MusicConstants._
+package components
 
 object Transformers {
 

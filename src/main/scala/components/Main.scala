@@ -1,12 +1,9 @@
-package main.scala.components
+package components
 
 import java.awt.event.{ActionEvent, ActionListener}
 import java.io.File
 import javax.sound.midi._
 import javax.swing.{JButton, JFrame, JPanel}
-
-//import Transformers
-
 
 object Main extends App {
   override def main(args: Array[String]): Unit = {
