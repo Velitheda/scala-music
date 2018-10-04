@@ -13,9 +13,9 @@ object Main extends App {
   def createSequence(numBars: Int): Sequence = {
     //TODO: Generate structure of melody in code, rather than manually here
 
-    val melody1 = Generators.melody(numBars, 0, 6)
-    val melody2 = Generators.melody(numBars, 0, 6)
-    val melody3 = Generators.melody(numBars, 0, 6)
+    val melody1 = Melody(numBars, 0, 6)
+    val melody2 = Melody(numBars, 0, 6)
+    val melody3 = Melody(numBars, 0, 6)
 
     val sequence = new Sequence(javax.sound.midi.Sequence.PPQ, 1)
     val track:Track = sequence.createTrack()
@@ -25,7 +25,6 @@ object Main extends App {
     println("Pitches " + melody.pitches)
     println("Rhythms " + melody.rhythm)
     println("Ticks " + melody.ticks)
-    println("Stop: " + melody.stop)
 
     melody.toEvents.foreach(track.add)
 

@@ -33,8 +33,6 @@ object Transformers {
     )
 
     // need the index in the mask of the nth +1 along,
-    println(note)
-    println(majorScale.drop(note))
     val maskIndex = majorScale.drop(note).foldRight(scaleInterval){(next, keyNoteCountDown) =>
       if(next._2 == 1) {
         if(keyNoteCountDown == 0) {
@@ -47,7 +45,6 @@ object Transformers {
         keyNoteCountDown
       }
     }
-    println(maskIndex)
     // starting at the current note,
     // wrapping around if the number is bigger than 7.
     maskIndex - note
@@ -68,7 +65,6 @@ object Transformers {
     Melody(melody.notes.reverse, startingTick)
   }
 
-  //belong in melody class
   def shiftInTime(melody: Melody, delta: Int): Melody = {
     Melody(melody.notes.map(n => Note(n.pitch, n.length, n.tick + delta, n.isRest)), delta)
   }
