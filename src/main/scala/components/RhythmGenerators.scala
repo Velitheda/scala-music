@@ -1,5 +1,6 @@
 package components
 
+import components.BasicRhythm.randomLength
 import components.Generators.randomNumber
 
 trait RhythmGenerator {
@@ -106,5 +107,12 @@ object BarRhythm extends RhythmGenerator {
         (note, false)
       }
     }
+  }
+}
+
+object ChordRhythm { //extend the RhythmGenerators soon
+  def rhythm(numberOfBars: Int, generator: Generator): List[(Int, Boolean)] = {
+    // currently returns a string of semibreves for each bar
+    List.fill(numberOfBars)((1, true))
   }
 }

@@ -54,9 +54,28 @@ object Generators {
     }
   }
 
-  def randomNumber(lowest: Int, highest: Int): Int = {
-    val rnd = new scala.util.Random
+  def randomNumber(lowest: Int, highest: Int, seed: Int = -1): Int = {
+    val rnd = if(seed >= 0) {
+      new scala.util.Random(seed)
+    } else {
+      new scala.util.Random
+    }
     lowest + rnd.nextInt( (highest - lowest) + 1 )
+  }
+
+  def getGenerator(seed: Int = -1): Generator = {
+    if(seed >= 0) {
+      new Generator(new scala.util.Random(seed))
+    } else {
+      new Generator(new scala.util.Random)
+    }
+  }
+}
+
+class Generator(random: scala.util.Random) {
+
+  def getRandomInt(lowest: Int, highest: Int): Int = {
+    lowest + random.nextInt( (highest - lowest) + 1 )
   }
 
 }

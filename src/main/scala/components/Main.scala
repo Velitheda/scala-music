@@ -1,6 +1,8 @@
 package components
 
 import java.io.File
+
+import components.Harmony.Bassline
 import javax.sound.midi._
 
 object Main extends App {
@@ -18,17 +20,30 @@ object Main extends App {
     val melody3 = Melody(numBars, 0, 6)
 
     val sequence = new Sequence(javax.sound.midi.Sequence.PPQ, 1)
-    val track:Track = sequence.createTrack()
+    val track: Track = sequence.createTrack()
 
-    val melody = Melody.combine(List(melody1, melody2, melody1, melody2, melody2, melody3, melody2, melody1))
+    val harmonyTrack: Track = sequence.createTrack()
 
-    println("Pitches " + melody.pitches)
-    println("Rhythms " + melody.rhythm)
-    println("Ticks " + melody.ticks)
 
-    melody.toEvents.foreach(track.add)
+    val melody = Melody.combine(List(melody1/*, melody2, melody1, melody2, melody2, melody3, melody2, melody1*/))
+
+//    println("Pitches " + melody.pitches)
+//    println("Rhythms " + melody.rhythm)
+//    println("Ticks " + melody.ticks)
+
+    //melody.toEvents.foreach(track.add)
+
+    val generator = Generators.getGenerator()
+    //                                   I, IV, VI, I, V
+    val bassline = Bassline.getBass(List(0, 3, 5, 0, 4), 40, generator)
+    println("Pitches " + bassline.pitches)
+    println("Rhythms " + bassline.rhythm)
+    println("Ticks " + bassline.ticks)
+
+    bassline.toEvents.foreach(harmonyTrack.add)
 
     track.add(new MidiEvent(new ShortMessage(ShortMessage.STOP), melody.stop))
+    harmonyTrack.add(new MidiEvent(new ShortMessage(ShortMessage.STOP), melody.stop))
     sequence
   }
 
@@ -62,8 +77,8 @@ object Main extends App {
 
   def save(sequence: Sequence): Unit = {
     //TODO: make sure this actually works
-    val file = new File("midifile.mid")
-    MidiSystem.write(sequence, 0, file)
+    //val file = new File("midifile.mid")
+    //MidiSystem.write(sequence, 0, file)
   }
 
 }

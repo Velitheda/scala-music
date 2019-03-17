@@ -13,4 +13,10 @@ object MusicConstants {
   //val highestMidiNote
 
   //val middle C
+
+
+  def scaleNotes(scale: List[Int]): List[Int] = {
+    val scaleNotes = List.range(0, 12).map(value => value * scale(value % scale.size))
+    scaleNotes.filter(note => note >= 0)
+  }
 }
